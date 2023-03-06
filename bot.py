@@ -9,6 +9,7 @@ from aiogram_dialog.widgets.kbd import Button
 from aiogram_dialog.widgets.text import Const
 from bot_state import Form
 from servey_data import Servey
+from dotenv import dotenv_values
 
 s = Servey()
 bs = Form()
@@ -120,8 +121,10 @@ end_servey = Window(
     state=bs.end_servey,
 )
 
+config=dotenv_values('.env')
+API_TOKEN=config['API_TOKEN']
 storage = MemoryStorage()
-bot = Bot(token="6138231355:AAGM9k41FIUbRoU4pBvqmGr0qB8nFbHZv2o")
+bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot, storage=storage)
 registry = DialogRegistry(dp)
 dialog = Dialog(
